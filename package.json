@@ -1,0 +1,108 @@
+{
+	"name": "package-script-bar",
+	"displayName": "Package Script Bar",
+	"description": "Run root package.json scripts conveniently from a streamlined toolbar in the bottom panel",
+	"version": "0.0.1",
+	"publisher": "bryanthaboi",
+	"repository": "https://github.com/bryanthaboi/package-script-bar",
+	"engines": {
+		"vscode": "^1.80.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"*"
+	],
+	"main": "./dist/extension.js",
+	"contributes": {
+		"views": {
+			"explorer": [
+				{
+					"type": "webview",
+					"id": "package-script-bar.scriptBar",
+					"name": "Script Bar"
+				}
+			]
+		},
+		"commands": [
+			{
+				"command": "package-script-bar.runScript",
+				"title": "Run Script"
+			},
+			{
+				"command": "package-script-bar.rescan",
+				"title": "Rescan package.json",
+				"icon": "$(refresh)"
+			},
+			{
+				"command": "package-script-bar.openSettings",
+				"title": "Open Script Bar Config"
+			},
+			{
+				"command": "package-script-bar.showScriptBar",
+				"title": "Show Script Bar",
+				"icon": "$(run-all)"
+			}
+		],
+		"menus": {
+			"view/title": [
+				{
+					"command": "package-script-bar.rescan",
+					"when": "view == package-script-bar.scriptBar",
+					"group": "navigation"
+				},
+				{
+					"command": "package-script-bar.openSettings",
+					"when": "view == package-script-bar.scriptBar",
+					"group": "navigation"
+				}
+			]
+		},
+		"configuration": {
+			"title": "Package Script Bar",
+			"properties": {
+				"package-script-bar.defaultRunMode": {
+					"type": "string",
+					"enum": [
+						"background",
+						"terminal"
+					],
+					"default": "background",
+					"description": "Default run mode for scripts (background runs silently with completion notification, terminal opens a visible terminal)"
+				},
+				"package-script-bar.showNotifications": {
+					"type": "boolean",
+					"default": true,
+					"description": "Show notification when a script completes (background mode only)"
+				}
+			}
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "pnpm run package",
+		"compile": "pnpm run check-types && pnpm run lint && node esbuild.js",
+		"watch": "npm-run-all -p watch:*",
+		"watch:esbuild": "node esbuild.js --watch",
+		"watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+		"package": "pnpm run check-types && pnpm run lint && node esbuild.js --production",
+		"compile-tests": "tsc -p . --outDir out",
+		"watch-tests": "tsc -p . -w --outDir out",
+		"pretest": "pnpm run compile-tests && pnpm run compile && pnpm run lint",
+		"check-types": "tsc --noEmit",
+		"lint": "eslint src",
+		"test": "vscode-test"
+	},
+	"devDependencies": {
+		"@types/vscode": "^1.109.0",
+		"@types/mocha": "^10.0.10",
+		"@types/node": "22.x",
+		"typescript-eslint": "^8.54.0",
+		"eslint": "^9.39.2",
+		"esbuild": "^0.27.2",
+		"npm-run-all": "^4.1.5",
+		"typescript": "^5.9.3",
+		"@vscode/test-cli": "^0.0.12",
+		"@vscode/test-electron": "^2.5.2"
+	}
+}
