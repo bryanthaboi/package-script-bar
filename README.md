@@ -6,7 +6,7 @@ A VS Code extension that displays a streamlined toolbar at the bottom of the edi
 
 ## Features
 
-- **Script Bar Panel**: A compact toolbar in the bottom panel (alongside Terminal, Problems, Output) with buttons for each enabled script
+- **Script Bar Panel**: A compact toolbar in the bottom left panel with buttons for each enabled script
 - **Enable/Disable Scripts**: Choose which scripts appear in the bar via the config file
 - **Nicknames**: Give scripts short labels (e.g., `build:prod` → `Build Prod`) for cleaner buttons
 - **Custom Colors**: Set a color for each script button
@@ -31,10 +31,10 @@ A VS Code extension that displays a streamlined toolbar at the bottom of the edi
 
 ### VS Code Settings
 
-| Setting | Description | Default |
-|---------|-------------|---------|
-| `package-script-bar.defaultRunMode` | `"background"` or `"terminal"` | `"background"` |
-| `package-script-bar.showNotifications` | Show completion notifications for background runs | `true` |
+| Setting                                | Description                                       | Default        |
+| -------------------------------------- | ------------------------------------------------- | -------------- |
+| `package-script-bar.defaultRunMode`    | `"background"` or `"terminal"`                    | `"background"` |
+| `package-script-bar.showNotifications` | Show completion notifications for background runs | `true`         |
 
 ### Workspace Config (`.vscode/package-script-bar.json`)
 
@@ -44,29 +44,29 @@ This file is created automatically when you use the extension. Edit it to custom
 
 ```json
 {
-  "scripts": {
-    "build": {
-      "enabled": true,
-      "nickname": "Build",
-      "color": "#4CAF50",
-      "runMode": "background"
-    },
-    "test": {
-      "enabled": false,
-      "nickname": "Test",
-      "color": "#2196F3",
-      "runMode": "terminal"
-    }
-  }
+	"scripts": {
+		"build": {
+			"enabled": true,
+			"nickname": "Build",
+			"color": "#4CAF50",
+			"runMode": "background"
+		},
+		"test": {
+			"enabled": false,
+			"nickname": "Test",
+			"color": "#2196F3",
+			"runMode": "terminal"
+		}
+	}
 }
 ```
 
-| Field | Description |
-|-------|-------------|
-| `enabled` | Show this script in the bar (`true`) or hide it (`false`) |
+| Field      | Description                                                       |
+| ---------- | ----------------------------------------------------------------- |
+| `enabled`  | Show this script in the bar (`true`) or hide it (`false`)         |
 | `nickname` | Short label for the button (e.g., `"Build"` instead of `"build"`) |
-| `color` | Hex color for the button (e.g., `"#4CAF50"`) |
-| `runMode` | `"background"` or `"terminal"` for this script |
+| `color`    | Hex color for the button (e.g., `"#4CAF50"`)                      |
+| `runMode`  | `"background"` or `"terminal"` for this script                    |
 
 ### Rescan package.json
 
@@ -84,9 +84,9 @@ Commit `.vscode/package-script-bar.json` to your repo so everyone gets the same 
 
 ## Commands
 
-| Command | Description |
-|---------|-------------|
-| `Package Script Bar: Rescan package.json` | Rescan scripts and merge with config |
+| Command                                      | Description                            |
+| -------------------------------------------- | -------------------------------------- |
+| `Package Script Bar: Rescan package.json`    | Rescan scripts and merge with config   |
 | `Package Script Bar: Open Script Bar Config` | Open `.vscode/package-script-bar.json` |
 
 ## Release Notes
