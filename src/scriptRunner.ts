@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import { spawn } from 'child_process';
+import { detectPackageManager, getRunCommand } from './packageManager';
 
 const EXTENSION_ID = 'package-script-bar';
 
@@ -14,22 +15,26 @@ export async function runScript(
 		.getConfiguration(EXTENSION_ID)
 		.get<boolean>('showNotifications', true);
 
+	const manager = await detectPackageManager(cwd);
+	const { cmd, args } = getRunCommand(manager, scriptName);
+	const runCmd = [cmd, ...args].join(' ');
+
 	if (runMode === 'terminal') {
 		const terminal = vscode.window.createTerminal({
-			name: `npm run ${scriptName}`,
+			name: `${cmd} run ${scriptName}`,
 			cwd,
 		});
 		terminal.show();
-		terminal.sendText(`npm run ${scriptName}`);
+		terminal.sendText(runCmd);
 		return;
 	}
 
 	// Background: spawn process, notify on completion
 	const isWindows = process.platform === 'win32';
-	const cmd = isWindows ? 'cmd.exe' : 'npm';
-	const args = isWindows ? ['/c', 'npm', 'run', scriptName] : ['run', scriptName];
+	const spawnCmd = isWindows ? 'cmd.exe' : cmd;
+	const spawnArgs = isWindows ? ['/c', cmd, ...args] : args;
 
-	const child = spawn(cmd, args, {
+	const child = spawn(spawnCmd, spawnArgs, {
 		cwd,
 		shell: !isWindows,
 		stdio: 'pipe',
