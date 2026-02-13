@@ -1,6 +1,8 @@
 # Package Script Bar
 
-A VS Code extension that displays a streamlined toolbar at the bottom of the editor with clickable buttons for your root `package.json` scripts. Run scripts with one click—in the background or in a terminal.
+<img src="./images/screenshot.png">
+
+A VS Code extension that displays a streamlined toolbar at the bottom left of the editor with clickable buttons for your root `package.json` scripts. Run scripts with one click—in the background or in terminal. Customize button colors. Nickname scripts to make them clean. With **automatic** package manager detection.
 
 **Author:** [bryanthaboi](https://github.com/bryanthaboi)
 
@@ -18,7 +20,7 @@ A VS Code extension that displays a streamlined toolbar at the bottom of the edi
 
 ## Requirements
 
-- VS Code ^1.109.0
+- VS Code ^1.80.0
 - A workspace folder with a root `package.json` containing a `scripts` section
 
 ## Quick Start
@@ -90,6 +92,10 @@ Commit `.vscode/package-script-bar.json` to your repo so everyone gets the same 
 | `Package Script Bar: Open Script Bar Config` | Open `.vscode/package-script-bar.json` |
 
 ## Release Notes
+
+### 1.0.2
+
+Automatic package manager detection. Screenshot in the readme. We the best. DJ Khaled.
 
 ### 0.0.1
 

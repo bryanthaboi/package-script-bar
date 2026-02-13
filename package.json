@@ -2,7 +2,7 @@
 	"name": "package-script-bar",
 	"displayName": "Package Script Bar",
 	"description": "Run root package.json scripts conveniently from a streamlined toolbar in the bottom panel",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"publisher": "bryanthaboi",
 	"repository": "https://github.com/bryanthaboi/package-script-bar",
 	"icon": "images/icon.png",
